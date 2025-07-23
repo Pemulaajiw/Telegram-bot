@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # =================================================================
-#      Installer Final Hokage-BOT (Versi Sinkronisasi GitHub v2)
+#      Installer Final Fansfvt-BOT (Versi Sinkronisasi GitHub v2)
 # =================================================================
 
 # --- Konfigurasi ---
-REPO_URL="https://github.com/hokagelegend9999/Telegram-bot.git"
+REPO_URL="https://github.com/Pemulaajiw/Telegram-bot.git"
 APP_DIR="/opt/hokage-bot"
 SERVICE_FILE="/etc/systemd/system/hokage-bot.service"
 SUDOERS_FILE="/etc/sudoers.d/hokage-bot"
@@ -28,7 +28,7 @@ check_root() {
 show_header() {
     clear
     echo -e "${GREEN}=====================================================${NC}"
-    echo -e "${GREEN}==     Installer Final Hokage-BOT (GitHub Sync)    ==${NC}"
+    echo -e "${GREEN}==     Installer Final Fansfvt-BOT (GitHub Sync)    ==${NC}"
     echo -e "${GREEN}=====================================================${NC}"
     echo
 }
