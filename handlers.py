@@ -61,8 +61,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         "🔰 SELAMAT DATANG 🔰\n\n"
         "◇━━━━━━━━━━━━━━━━━━━━━━━◇\n\n"
         "👤 Bro Eitsis Information :\n\n"
-        "🔰 💌 Email : ${first_name}@fanstvt.net\n\n"
-        "🔰 🆔 Member Id : ${id}\n\n"
+        "🔰 💌 Email : ${user.first_name}@fanstvt.net\n\n"
+        "🔰 🆔 Member Id : ${user.id}\n\n"
         "◇━━━━━━━━━━━━━━━━━━━━━━━◇\n\n"
         "🤖 Welcome to SSH/VPN Management Bot!\n\n"
         "Use /menu to access all features.",
