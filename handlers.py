@@ -57,6 +57,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     user = update.effective_user
     database.add_user_if_not_exists(user.id, user.first_name, user.username)
     await update.message.reply_text(
+        ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+        🔰 SELAMAT DATANG 🔰
+        ◇━━━━━━━━━━━━━━━━━━━━━━━◇
+        👤 Bro Eitsis Information :
+        🔰 💌 Email : ${first_name}@fanstvt.net 
+        🔰 🆔 Member Id : ${id}
+        ◇━━━━━━━━━━━━━━━━━━━━━━━◇
         "🤖 Welcome to SSH/VPN Management Bot!\n\n"
         "Use /menu to access all features.",
         reply_markup=keyboards.get_main_menu_keyboard()
