@@ -54,82 +54,11 @@ RENEW_VMESS_GET_USERNAME, RENEW_VMESS_GET_DURATION = map(chr, range(27, 29))
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Mengirim pesan selamat datang dan menu utama."""
-
-  // Ambil data user
-  const userId = ctx.from.id;
-  const userName = ctx.from.first_name || '-';
-
-  // Statistik user
-  const now = new Date();
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-  const weekStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay()).getTime();
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
-  let userToday = 0, userWeek = 0, userMonth = 0;
-  let globalToday = 0, globalWeek = 0, globalMonth = 0;
-  try {
-    userToday = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE user_id = ? AND timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [userId, todayStart], (err, row) => resolve(row ? row.count : 0));
-    });
-    userWeek = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE user_id = ? AND timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [userId, weekStart], (err, row) => resolve(row ? row.count : 0));
-    });
-    userMonth = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE user_id = ? AND timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [userId, monthStart], (err, row) => resolve(row ? row.count : 0));
-    });
-    globalToday = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [todayStart], (err, row) => resolve(row ? row.count : 0));
-    });
-    globalWeek = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [weekStart], (err, row) => resolve(row ? row.count : 0));
-    });
-    globalMonth = await new Promise((resolve) => {
-      db.get('SELECT COUNT(*) as count FROM transactions WHERE timestamp >= ? AND type IN ("ssh","vmess","vless","trojan","shadowsocks")', [monthStart], (err, row) => resolve(row ? row.count : 0));
-    });
-  } catch (e) {}
-
-  // Jumlah pengguna bot
-  let jumlahPengguna = 0;
-  try {
-    const row = await new Promise((resolve, reject) => {
-      db.get('SELECT COUNT(*) AS count FROM users', (err, row) => { if (err) reject(err); else resolve(row); });
-    });
-    jumlahPengguna = row.count;
-  } catch (e) { jumlahPengguna = 0; }
-
-  // Latency (dummy, bisa diubah sesuai kebutuhan)
-  const latency = (Math.random() * 0.1 + 0.01).toFixed(2);
-    
     user = update.effective_user
     database.add_user_if_not_exists(user.id, user.first_name, user.username)
     await update.message.reply_text(
-╭─ <b>⚡ Welcome to SSH/VPN Management Bot! ⚡</b>
-├ Bot VPN Premium dengan sistem otomatis untuk
-├ membuat layanan VPN berkualitas tinggi
-└ Dapatkan akses internet cepat & aman dengan layanan VPN terpercaya!
-
-<b>Hai, Bro Eitsis <code>${userName}</code>!</b>
-ID: <code>${userId}</code>
-Email: <code>Rp ${userId}@yahoo.net</code>
-
-<blockquote>
-📊 <b>Statistik Anda</b>
-• Hari Ini: ${userToday} akun
-• Minggu Ini: ${userWeek} akun
-• Bulan Ini: ${userMonth} akun
-
-🌐 <b>Statistik Global</b>
-• Hari Ini: ${globalToday} akun
-• Minggu Ini: ${globalWeek} akun
-• Bulan Ini: ${globalMonth} akun
-</blockquote>
-
-👨‍💻 <b>Pembuat:</b> @AJW29
-🛠️ <b>Credit:</b> SABANG × MERAUKE 
-🔧 <b>Base:</b> FighterTunnel
-👥 Pengguna BOT: ${jumlahPengguna}
-⏱️ Latency: ${latency} ms
-──────────────────────────
-Use /menu to access all features.`;
+        "🤖 Welcome to SSH/VPN Management Bot!\n\n"
+        "Use /menu to access all features.",
         reply_markup=keyboards.get_main_menu_keyboard()
     )
     return ROUTE
