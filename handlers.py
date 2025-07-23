@@ -54,6 +54,8 @@ RENEW_VMESS_GET_USERNAME, RENEW_VMESS_GET_DURATION = map(chr, range(27, 29))
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Mengirim pesan selamat datang dan menu utama."""
+    const userId = ctx.from.id;
+    const userName = ctx.from.first_name || '-';
     user = update.effective_user
     database.add_user_if_not_exists(user.id, user.first_name, user.username)
     await update.message.reply_text(
@@ -61,8 +63,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         "🔰 SELAMAT DATANG 🔰\n\n"
         "◇━━━━━━━━━━━━━━━━━━━━━━━◇\n\n"
         "👤 Bro Eitsis Information :\n\n"
-        "🔰 💌 Email : ${user.first_name}@fanstvt.net\n\n"
-        "🔰 🆔 Member Id : ${user.id}\n\n"
+        "🔰 💌 Email : ${userName}@fanstvt.net\n\n"
+        "🔰 🆔 Member Id : ${userId}\n\n"
         "◇━━━━━━━━━━━━━━━━━━━━━━━◇\n\n"
         "🤖 Welcome to SSH/VPN Management Bot!\n\n"
         "Use /menu to access all features.",
