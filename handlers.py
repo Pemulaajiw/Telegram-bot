@@ -57,8 +57,34 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     user = update.effective_user
     database.add_user_if_not_exists(user.id, user.first_name, user.username)
     await update.message.reply_text(
-        "🤖 Welcome to SSH/VPN Management Bot!\n\n"
-        "Use /menu to access all features.",
+╭─ <b>⚡ Welcome to SSH/VPN Management Bot! ⚡</b>
+├ Bot VPN Premium dengan sistem otomatis untuk
+├ membuat layanan VPN berkualitas tinggi
+└ Dapatkan akses internet cepat & aman dengan layanan VPN terpercaya!
+
+<b>Hai, Bro Eitsis <code>${userName}</code>!</b>
+ID: <code>${userId}</code>
+Email: <code>Rp ${userId}@yahoo.net</code>
+
+<blockquote>
+📊 <b>Statistik Anda</b>
+• Hari Ini: ${userToday} akun
+• Minggu Ini: ${userWeek} akun
+• Bulan Ini: ${userMonth} akun
+
+🌐 <b>Statistik Global</b>
+• Hari Ini: ${globalToday} akun
+• Minggu Ini: ${globalWeek} akun
+• Bulan Ini: ${globalMonth} akun
+</blockquote>
+
+👨‍💻 <b>Pembuat:</b> @AJW29
+🛠️ <b>Credit:</b> SABANG × MERAUKE 
+🔧 <b>Base:</b> FighterTunnel
+👥 Pengguna BOT: ${jumlahPengguna}
+⏱️ Latency: ${latency} ms
+──────────────────────────
+Use /menu to access all features.`;
         reply_markup=keyboards.get_main_menu_keyboard()
     )
     return ROUTE
